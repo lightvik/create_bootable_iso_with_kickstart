@@ -1,0 +1,5 @@
+/extracted_iso
+*.iso
+grub.cfg
+isolinux.cfg
+ks.cfg

@@ -1,1 +1,0 @@
-# create_bootable_iso_with_kickstart
