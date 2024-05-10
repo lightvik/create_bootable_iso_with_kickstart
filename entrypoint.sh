@@ -71,10 +71,10 @@ function _generate_iso {
 }
 
 function _clean {
-  local bla
-  bla="${1}"
+  local extracted_iso_root_path
+  extracted_iso_root_path="${1}"
 
-  rm --force --recursive "${bla}"
+  rm --force --recursive "${extracted_iso_root_path}"
 }
 
 function _main {
