@@ -56,7 +56,8 @@ ISO_LABEL='OL-9-4-0-BaseOS-x86_64'
 INPUT_ISO_FILENAME='OracleLinux-R9-U4-x86_64-dvd.iso'
 OUTPUT_ISO_FILENAME='OracleLinux-R9-U4-x86_64-dvd_kickstart.iso'
 ```
-### 5 - Собираем докер образ | !!! необходимо выполнить в каталоге проекта !!! :
+### 5 - Собираем докер образ:
+Данную команду обходимо выполнить в каталоге проекта  
 ```
 docker build \
 --tag "${DOCKER_IMAGE}:${DOCKER_TAG}" \
