@@ -9,12 +9,11 @@
 WORK_DIR="/workdir"
 EXTRACTED_ISO_ROOT_PATH="${WORK_DIR}/extracted_iso"
 
+
 function _help_and_exit {
   echo 'Usage:'
+  echo '${ISO_LABEL}, ${INPUT_ISO_FILENAME} and ${OUTPUT_ISO_FILENAME} environment variables must be defined'
   echo 'isolinux.cfg grub.cfg ks.cfg and input iso file must exist in current directory'
-  echo '${1} - ISO Label'
-  echo '${2} - input ISO basename in "workdir" directory'
-  echo '${3} - output ISO basename in "workdir" directory'
   exit 1
 }
 
@@ -78,24 +77,17 @@ function _clean {
 }
 
 function _main {
-  local iso_label
-  local input_iso_filename
-  local output_iso_filename
-  iso_label="${1}"
-  input_iso_filename="${2}"
-  output_iso_filename="${3}"
-
-  [[ -n "${iso_label}" ]] || _help_and_exit
-  [[ -n "${input_iso_filename}" ]] || _help_and_exit
-  [[ -n "${output_iso_filename}" ]] || _help_and_exit
+  [[ -n "${ISO_LABEL}" ]] || _help_and_exit
+  [[ -n "${INPUT_ISO_FILENAME}" ]] || _help_and_exit
+  [[ -n "${OUTPUT_ISO_FILENAME}" ]] || _help_and_exit
   [[ -f "${WORK_DIR}/isolinux.cfg" ]] || _help_and_exit
   [[ -f "${WORK_DIR}/grub.cfg" ]] || _help_and_exit
   [[ -f "${WORK_DIR}/ks.cfg" ]] || _help_and_exit
-  [[ -f "${WORK_DIR}/${input_iso_filename}" ]] || _help_and_exit
+  [[ -f "${WORK_DIR}/${INPUT_ISO_FILENAME}" ]] || _help_and_exit
 
-  _extract_iso "${WORK_DIR}/${input_iso_filename}" "${EXTRACTED_ISO_ROOT_PATH}"
+  _extract_iso "${WORK_DIR}/${INPUT_ISO_FILENAME}" "${EXTRACTED_ISO_ROOT_PATH}"
   _copy_modified_file_in_iso_directory "${WORK_DIR}" "${EXTRACTED_ISO_ROOT_PATH}" 
-  _generate_iso "${iso_label}" "${WORK_DIR}/${output_iso_filename}" "${EXTRACTED_ISO_ROOT_PATH}"
+  _generate_iso "${ISO_LABEL}" "${WORK_DIR}/${OUTPUT_ISO_FILENAME}" "${EXTRACTED_ISO_ROOT_PATH}"
   _clean "${EXTRACTED_ISO_ROOT_PATH}"
 
 }
