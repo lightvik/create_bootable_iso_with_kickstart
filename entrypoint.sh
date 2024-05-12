@@ -23,7 +23,16 @@ function _extract_iso {
   iso_path="${1}"
   extract_dir_path="${2}"
 
-  mkdir --parents "${extract_dir_path}"
+  rm \
+  --verbose \
+  --force \
+  --recursive \
+  "${extract_dir_path}"
+
+  mkdir \
+  --parents \
+  --verbose \
+  "${extract_dir_path}"
   osirrox -indev "${iso_path}" -extract / "${extract_dir_path}"
 }
 
@@ -45,6 +54,11 @@ function _generate_iso {
   iso_label="${1}"
   modified_iso_path="${2}"
   extracted_iso_root_path="${3}"
+
+  rm \
+  --verbose \
+  --force \
+  "${modified_iso_path}"
 
   genisoimage \
   -U \
@@ -78,7 +92,11 @@ function _clean {
   local extracted_iso_root_path
   extracted_iso_root_path="${1}"
 
-  rm --force --recursive "${extracted_iso_root_path}"
+  rm \
+  --verbose \
+  --force \
+  --recursive \
+  "${extracted_iso_root_path}"
 }
 
 function _main {
@@ -94,7 +112,6 @@ function _main {
   _copy_modified_file_in_iso_directory "${WORK_DIR}" "${EXTRACTED_ISO_ROOT_PATH}" 
   _generate_iso "${ISO_LABEL}" "${WORK_DIR}/${OUTPUT_ISO_FILENAME}" "${EXTRACTED_ISO_ROOT_PATH}"
   _clean "${EXTRACTED_ISO_ROOT_PATH}"
-
 }
 
 
