@@ -67,6 +67,11 @@ function _generate_iso {
   -o "${modified_iso_path}" "${extracted_iso_root_path}"
 
   implantisomd5 "${modified_iso_path}"
+
+  chmod \
+  --verbose \
+  a+rw \
+  "${modified_iso_path}"
 }
 
 function _clean {
