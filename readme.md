@@ -99,3 +99,5 @@ docker run \
 --env "OUTPUT_ISO_FILENAME=${OUTPUT_ISO_FILENAME}" \
 "${DOCKER_IMAGE}:${DOCKER_TAG}"
 ```
+  
+Результатом выполнения будет файл `${OUTPUT_ISO_FILENAME}`.
