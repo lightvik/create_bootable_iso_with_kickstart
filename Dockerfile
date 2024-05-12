@@ -8,11 +8,9 @@ LABEL org.opencontainers.image.authors="${IMAGE_AUTHOR}"
 
 RUN microdnf install -y xorriso genisoimage isomd5sum
 
-WORKDIR /workdir
-
-RUN mkdir --parents /workdir/extracted_iso
-
 COPY --chmod=755 --chown=root:root entrypoint.sh /entrypoint.sh
+
+WORKDIR /workdir
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
