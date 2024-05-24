@@ -1,5 +1,5 @@
 /extracted_iso
 *.iso
-grub.cfg
-isolinux.cfg
-ks.cfg
+/grub.cfg
+/isolinux.cfg
+/ks.cfg
